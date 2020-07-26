@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Dens0/Natours-with-node/issues"
   },
-  "homepage": "https://github.com/Dens0/Natours-with-node#readme"
+  "homepage": "https://github.com/Dens0/Natours-with-node#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
