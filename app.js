@@ -2,18 +2,22 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const app = express();
-
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 
+const app = express();
+
+
+
 //1). MIDDLEWARES
-console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 app.use(express.json()); //middleware between request and response
 app.use(express.static(`${__dirname}/public`)); // daje dostęp do plików w folderze publicznym - działa przy plikach statycznych
+
+// console.log(process.env.NODE_ENV);
+
 
 app.use((req, res, next) => {
   // trzeba tutaj przywołąć next ponieważ bez tego  cykl req res się zablokuje i nie zwróci odpowiedzi nigdy

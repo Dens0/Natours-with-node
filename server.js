@@ -1,8 +1,8 @@
-const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-dotenv.config({
-  path: './config.env'
-});
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
+const app = require('./app');
+
 
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
 
@@ -11,29 +11,12 @@ mongoose
   .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useUnifiedTopology: true
 
   }).then(() => console.log('DB connection success!'));
 
-const tourSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'A tour mus have a name'],
-    unicue:true,
-  },
-  rating:{
-    type: Number,
-    default: 4.5,
-  },
-  price: {
-    type: Number,
-    required: [true, 'A tour mus have a name'],
-  },
 
-});
-
-const Tour = mongoose.model('Tour',tourSchema)
-const app = require('./app');
 // console.log(process.env);
 
 //START THE SERVER
